@@ -108,20 +108,18 @@ namespace task_exam_oop
                 {
 
                     case 1:
-                        Console.WriteLine(" enter quwstion ");
+                        Console.WriteLine("enter question");
                         string quest = Console.ReadLine();
-                        Console.WriteLine(" enter answer ");
+                        Console.WriteLine(" slect \n 1 : true \n 2: false  ");
                         string ans = Console.ReadLine();
                         Console.WriteLine(" degre ");
                         int de = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine(" slect \n 1 : true \n 2: false  ");
                         var q1 = new TrueOrFalseQuestion(quest, ans, de);
                         exam.Add(q1);
                         break;
 
-
                     case 2:
-                        Console.WriteLine(" enter quwstion ");
+                        Console.WriteLine("enter question");
                         string queest = Console.ReadLine();
 
                         Console.Write($"enter sho ? 1: ");
@@ -143,9 +141,8 @@ namespace task_exam_oop
                         exam.Add(q2);
                         break;
 
-
                     case 3:
-                        Console.WriteLine(" enter quwstion ");
+                        Console.WriteLine("enter question");
                         string quuest = Console.ReadLine();
 
                         Console.Write($"enter sho ? 1: ");
@@ -172,14 +169,16 @@ namespace task_exam_oop
 
                 }
             }
-            Console.WriteLine(" start exam ");
+            
+            Console.WriteLine("===================================start exam========================================== ");
             int grade = 0;
             string incorrect = "";
+            int m = 0;
             foreach (var q in exam)
             {
-                
-
-                Console.WriteLine($"Q: {q.Body} )");
+              
+                m++;
+                Console.WriteLine($"Question {m}: {q.Body} :");
                 if (q is MultipleChoiceQuestion mc)
                 {
                     Console.WriteLine(" choose more than one answer (separate them with a comma ,) ");
@@ -201,10 +200,11 @@ namespace task_exam_oop
                     Console.WriteLine(" choose \n 1: true \n  2: false ");
 
                 }
-                    Console.WriteLine(" enter answer ");
+               
+                Console.WriteLine(" enter answer ");
                 string youranswer = Console.ReadLine();
-
-                if (youranswer == q.Answer)
+              
+                if (q.Anserquestion(youranswer))
                 {
                     grade += q.Degree;
                 }
@@ -213,7 +213,7 @@ namespace task_exam_oop
                     incorrect += q.Body + "\n";
                 }
 
-
+               
             }
             Console.WriteLine($"your grade is = {grade}");
             if (incorrect != "")
